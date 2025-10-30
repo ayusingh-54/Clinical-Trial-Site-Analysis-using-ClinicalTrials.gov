@@ -26,11 +26,15 @@ venv/
 ENV/
 env/
 
-# Database
-data/
-*.db
+# Database (but allow data/clinical_trials.db for Streamlit Cloud)
+# data/
+# *.db
 *.sqlite
 *.sqlite3
+
+# Allow specific database file for deployment
+!data/
+!data/clinical_trials.db
 
 # Environment variables
 .env

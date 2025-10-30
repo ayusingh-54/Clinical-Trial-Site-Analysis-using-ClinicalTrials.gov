@@ -44,14 +44,25 @@ st.markdown("""
 @st.cache_resource
 def get_db_session():
     """Get database session"""
-    return get_session()
+    try:
+        return get_session()
+    except Exception as e:
+        st.error(f"Database connection error: {e}")
+        return None
 
 
 @st.cache_data(ttl=300)
 def load_sites_data():
     """Load sites data from database"""
     session = get_db_session()
-    sites = session.query(SiteMaster).all()
+    if session is None:
+        return pd.DataFrame()
+    
+    try:
+        sites = session.query(SiteMaster).all()
+    except Exception as e:
+        st.error(f"Error loading sites data: {e}")
+        return pd.DataFrame()
     
     data = []
     for site in sites:
@@ -77,8 +88,15 @@ def load_sites_data():
 def load_trials_data():
     """Load trials data from database"""
     session = get_db_session()
-    trials = session.query(ClinicalTrial).all()
-    return len(trials)
+    if session is None:
+        return 0
+    
+    try:
+        trials = session.query(ClinicalTrial).all()
+        return len(trials)
+    except Exception as e:
+        st.error(f"Error loading trials data: {e}")
+        return 0
 
 
 def main():
