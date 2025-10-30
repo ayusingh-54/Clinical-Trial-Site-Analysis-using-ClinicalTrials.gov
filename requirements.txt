@@ -1,0 +1,30 @@
+# Core dependencies
+requests>=2.31.0
+pandas>=2.0.0
+numpy>=1.24.0
+sqlalchemy>=2.0.0
+
+# Data processing
+python-dateutil>=2.8.0
+fuzzywuzzy>=0.18.0
+python-Levenshtein>=0.20.0
+
+# Machine Learning
+scikit-learn>=1.3.0
+
+# Visualization
+streamlit>=1.28.0
+plotly>=5.17.0
+folium>=0.15.0
+streamlit-folium>=0.15.0
+
+# Optional enrichment
+biopython>=1.81
+geopy>=2.4.0
+
+# AI integration (optional)
+openai>=1.0.0
+
+# Utilities
+python-dotenv>=1.0.0
+tqdm>=4.66.0
